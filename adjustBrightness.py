@@ -4,18 +4,12 @@
 #I tried a bunch of different methods for getting the keys working on this machine,
 #and none of them worked. Rather than bang my head against it I decided it would be
 #faster to just make a script.
-#
-#Ymmv this script requires sticky bit, or you can open up your /sys/.../brightness
-#file for others to use. Using this script may mean sacrificing some security
-#on your system due to either changing brightness file perms or executing it as
-#suid.
-#
 #In order for this to work on your system you will need to find your
 #brightness file in sys. Edit the variables below.
 
-####Do not edit.####
-import argparse,sys#
-####################
+####Do not edit.#######
+import argparse,sys,os#
+#######################
 
 #Edit to fit your system.
 location = "/sys/class/backlight/intel_backlight/brightness"
@@ -96,6 +90,10 @@ action='store_true', default = False )
 
 parser.add_argument( '--full', help='This will set the screen to max brightness.',
 action='store_true', default = False)
+
+if os.getuid() != 0:
+	print( 'This script must be run as root.' )
+	sys.exit(2)
 
 args = parser.parse_args()
 if args.black == True:

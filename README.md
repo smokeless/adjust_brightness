@@ -1,11 +1,10 @@
+# adjust_brightness
 This is a simple script for adjusting screen brightness
 on a linux system. Sometimes you just want a quick and
 dirty fix for something. 
 
-This quick and dirty fix will require you to suid root so that 
-you can edit /sys/.../brightness. If you are uncomfortable doing so, 
-you can execute it as root, or change permissions on your 
-.../brightness file.
+If you want to run this script without sudo you can change
+perms on /sys/.../brightness.
 
 This is set up for my laptop specifically. Before using you
 should edit the py file to fit your machine.
